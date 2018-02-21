@@ -1,0 +1,25 @@
+{
+  "name": "cps593_final",
+  "version": "1.0.0",
+  "description": "A simple fitness tracking app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kramdar93/CPS593_Final.git"
+  },
+  "author": "Mark Elsinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kramdar93/CPS593_Final/issues"
+  },
+  "homepage": "https://github.com/Kramdar93/CPS593_Final#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9"
+  }
+}
