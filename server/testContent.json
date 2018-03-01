@@ -1,4 +1,4 @@
-{
+[{
     "user":"admin",
     "rating":0,
     "content":{
@@ -7,4 +7,4 @@
         "images":[]
     },
     "comments":[]
-}
+}]

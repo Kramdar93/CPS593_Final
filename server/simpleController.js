@@ -22,7 +22,7 @@ module.exports = app
         htmlstring += htmlTail;
         res.write(htmlstring);
         res.end();
-    })
+    });
 
 //Construct a card that is populated with a JSONObj of testContent structure, return html string
 function populateContent(JSONObj){
@@ -32,7 +32,7 @@ function populateContent(JSONObj){
                 +"<h5 class='card-title'>" + JSONObj.content.title + "</h5>"
                 +"<h6 class='card-subtitle'>" + JSONObj.user + "</h6>"
                 +"<p class='card-text'>" + JSONObj.content.text + "</p>"
-                ;
+                +"</div>";
 
     //append each image
     for (i = 0; i < JSONObj.content.images.length; ++i)
@@ -41,7 +41,7 @@ function populateContent(JSONObj){
     }
 
     //close card div
-    result += "</div></div>" ;
+    result += "</div>" ;
 
     //return the html string
     return result;

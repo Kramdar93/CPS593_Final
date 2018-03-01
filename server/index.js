@@ -7,7 +7,8 @@ const serverName = "localhost";
 const port = 8080;
 
 //load routing controller from simpleController.js
-const simple = require("./simpleController");
+//const simple = require("./simpleController");
+const simple = require("./mvcRouter");
 
 //use routing controller to listen on port
 app.use(simple).listen(port);
