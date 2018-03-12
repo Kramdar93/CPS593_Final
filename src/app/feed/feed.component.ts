@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Post } from '../models/post';
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  posts:Post[];
+
+  constructor() {
+    this.posts = [{username:"mark", rating:0}];
+  }
 
   ngOnInit() {
   }
