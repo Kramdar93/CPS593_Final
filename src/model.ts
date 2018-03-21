@@ -3,6 +3,7 @@ export function GetJsonData(){
     //return require("../server/testContent");
 
     //just use hardcoded content for now.
+    /*
     return [{
         "user":"admin",
         "rating":0,
@@ -33,4 +34,5 @@ export function GetJsonData(){
         },
         "comments":[]
     }];
+    */
 };

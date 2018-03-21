@@ -1,3 +1,9 @@
-<p>
-  profile works!
-</p>
+<span class="badge badge-primary float-left">profile picture</span>
+<h2>{{user.username}}</h2>
+<ul>
+  <li>Height: {{user.height}}</li>
+  <li>Weight: {{user.weight}}</li>
+</ul>
+<ul>
+  <li *ngFor="let friend of user.friends">{{friend}}</li>
+</ul>

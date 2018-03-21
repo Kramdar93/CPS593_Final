@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Post } from '../models/post';
 
+import { ContentService } from '../services/content.service';
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -11,8 +13,8 @@ export class FeedComponent implements OnInit {
 
   posts:Post[];
 
-  constructor() {
-    this.posts = [{username:"mark", rating:0}];
+  constructor(contentServer:ContentService) {
+    this.posts = contentServer.GetPosts();
   }
 
   ngOnInit() {

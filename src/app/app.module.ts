@@ -9,6 +9,9 @@ import { FeedComponent } from './feed/feed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FriendsComponent } from './friends/friends.component';
 
+import { ContentService } from "./services/content.service";
+import { MockContentService } from './services/mock-content.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { FriendsComponent } from './friends/friends.component';
       {path:'', redirectTo:'feed', pathMatch:'full'}
     ])
   ],
-  providers: [],
+  providers: [{provide:ContentService, useClass:MockContentService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
