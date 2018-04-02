@@ -5,7 +5,7 @@ import { GetJsonData } from "./model";
 import * as $ from "jquery";
 
 //once the document is ready 
-$(document).ready(function(){
+/*$(document).ready(function(){
     //retrieve the data
     var data = GetJsonData();
     //only display if we got anything.
@@ -31,4 +31,4 @@ $(document).ready(function(){
             });
         });
     }
-});
+});*/
