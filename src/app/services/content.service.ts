@@ -15,7 +15,7 @@ export class ContentService {
 
   public GetUser(name:string){
     //actually look up in datastore or something
-    return new UserProfile("TODO: load posts from somewhere", 0, 0, new Date(), new Date(), new Progress());
+    return new UserProfile("TODO: load posts from somewhere", 0, 0, [], new Date(), new Date(), new Progress());
   }
 
 }

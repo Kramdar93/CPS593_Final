@@ -1,3 +1,20 @@
-<p>
-  friends works!
-</p>
+<div class="row no-gutters">
+  <div class="col-md-3" *ngFor="let friend of friends">
+    <div class="card">
+      <div class="card-header muted">
+        {{friend.username}}
+      </div>
+      <img class="card-img" [src]="friend.profileImage" alt="Profile Image" />
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header text-muted">
+        Add Friend
+      </div>
+      <div class="card-body text-center text-muted">
+        <h1>+</h1>
+      </div>
+    </div>
+  </div>
+</div>

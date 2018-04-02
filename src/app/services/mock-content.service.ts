@@ -16,7 +16,7 @@ export class MockContentService extends ContentService {
   }
 
   public GetUser(name:string){
-    return new UserProfile(name, 200, 6, new Date(), new Date(), new Progress());
+    return new UserProfile(name, 200, 6, ["alice","bob","charlie"], new Date(), new Date(), new Progress());
   }
 
 }

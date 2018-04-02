@@ -7,16 +7,19 @@ export class UserProfile{
 
     public friends:string[];
 
+    public profileImage:string = "";
+
     /*
     public signupDate:Date = new Date();
     public birthday:Date = new Date();
     public progress:Progress = new Progress();
     */
 
-    constructor( name:string, wgt:number, hgt:number, public signup:Date, public birthday:Date, public progress:Progress ){
+    constructor( name:string, wgt:number, hgt:number, newFriends:string[], public signup:Date, public birthday:Date, public progress:Progress){
         this.username = name;
         this.weight = wgt;
         this.height = hgt;
+        this.friends = newFriends;
     }
 } 
 
