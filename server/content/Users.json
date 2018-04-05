@@ -1,0 +1,7 @@
+[
+    {
+        "user":{"username":"test",
+            "friends":[]},
+        "posts":[{"text":"blah"}]
+    }
+]

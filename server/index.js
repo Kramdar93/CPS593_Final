@@ -8,10 +8,13 @@ const port = 8080;
 
 //load routing controller from simpleController.js
 //const simple = require("./simpleController");
-const simple = require("./mvcRouter");
+//const simple = require("./mvcRouter");
+const controller = require("./content/controller");
 
 //use routing controller to listen on port
-app.use(simple).listen(port);
+app
+    .use('/content', controller)
+    .listen(port);
 
 //remind the developer of our url
 console.log("running on http://" + serverName + ":" + port);
