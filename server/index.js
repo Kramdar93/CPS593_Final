@@ -1,6 +1,8 @@
+//path for filepath operations
+const path = require("path");
 //load express, retrieve app object
 const express = require("express");
-var app = express();
+const app = express();
 
 //define server name and port
 const serverName = "localhost";
@@ -13,6 +15,15 @@ const controller = require("./content/controller");
 
 //use routing controller to listen on port
 app
+    .use("/",(req,res,next)=>{
+        //middleware to allow passing more data
+        res.header("Access-Control-Allow-Origin","*");
+        res.header("Access-Control-Allow-Methods","*");
+        res.header("Access-Control-Allow-Headers","*");
+        next();
+    })
+    
+    .use("/",express.static(path.join(__dirname,"../dist/")))
     .use('/content', controller)
     .listen(port);
 
