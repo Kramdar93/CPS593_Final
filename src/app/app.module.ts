@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { FeedComponent } from './feed/feed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FriendsComponent } from './friends/friends.component';
+import { LoginComponent } from './login/login.component';
 
 import { ContentService } from "./services/content.service";
 import { MockContentService } from './services/mock-content.service';
@@ -19,7 +20,8 @@ import { MockContentService } from './services/mock-content.service';
     NavComponent,
     FeedComponent,
     ProfileComponent,
-    FriendsComponent
+    FriendsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

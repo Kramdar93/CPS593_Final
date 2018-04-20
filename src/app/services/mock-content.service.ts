@@ -7,6 +7,8 @@ import { UserProfile, Progress } from '../models/userProfile';
 @Injectable()
 export class MockContentService extends ContentService {
 
+  currentUser:UserProfile;
+
   public GetPosts(){
     return [new Post("mark", 0, "just joined, wut do?"),
       new Post("sarah", 15, "MFW right now.", "https://i.pinimg.com/736x/72/da/9f/72da9f193ca69221a57c2ba5392381d7.jpg"),
@@ -17,6 +19,16 @@ export class MockContentService extends ContentService {
 
   public GetUser(name:string){
     return new UserProfile(name, 200, 6, ["alice","bob","charlie"], new Date(), new Date(), new Progress());
+  }
+
+  public LogIn(uname:string, phash:string){
+    //ignore password hash, just return the user given (constructed since this is mock)
+    console.log(phash);
+    return this.GetUser(uname);
+  }
+
+  public SignUp(uname:string, phash:string){
+    return { success:true };
   }
 
 }

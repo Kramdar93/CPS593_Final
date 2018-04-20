@@ -1,4 +1,6 @@
 <div class="container">
   <app-nav></app-nav>
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="contentServer.currentUser"></router-outlet>
+  <br *ngIf="!contentServer.currentUser" />
+  <app-login *ngIf="!contentServer.currentUser"></app-login>
 </div>
