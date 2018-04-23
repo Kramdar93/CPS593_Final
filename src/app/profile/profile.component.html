@@ -1,9 +1,9 @@
 <span class="badge badge-primary float-left">profile picture</span>
-<h2>{{user.username}}</h2>
+<h2>{{contentServer.currentUser.username}}</h2>
 <ul>
-  <li>Height: {{user.height}}</li>
-  <li>Weight: {{user.weight}}</li>
+  <li>Height: {{contentServer.currentUser.height}}</li>
+  <li>Weight: {{contentServer.currentUser.weight}}</li>
 </ul>
 <ul>
-  <li *ngFor="let friend of user.friends">{{friend}}</li>
+  <li *ngFor="let friend of contentServer.currentUser.friends">{{friend}}</li>
 </ul>

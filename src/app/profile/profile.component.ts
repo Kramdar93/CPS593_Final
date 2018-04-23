@@ -9,10 +9,8 @@ import { ContentService } from '../services/content.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public user:UserProfile;
-
-  constructor(contentServer:ContentService) {
-    this.user = contentServer.GetUser("someuser");
+  constructor(private contentServer:ContentService) {
+    //don't have to even track user now, just use the content service.
    }
 
   ngOnInit() {
