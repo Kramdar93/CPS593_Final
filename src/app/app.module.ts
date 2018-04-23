@@ -29,7 +29,7 @@ import { MockContentService } from './services/mock-content.service';
       {path:'feed', component:FeedComponent},
       {path:'friends', component:FriendsComponent},
       {path:'profile', component:ProfileComponent},
-      {path:'', redirectTo:'feed', pathMatch:'full'}
+      {path:'', redirectTo:'/feed', pathMatch:'full'}
     ])
   ],
   providers: [{provide:ContentService, useClass:MockContentService}],

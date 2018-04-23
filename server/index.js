@@ -28,8 +28,11 @@ app
         res.header("Access-Control-Allow-Headers","*");
         next();
     })
-    .use("/",express.static(path.join(__dirname,"../dist/")))
-    .use('/content', controller)
+    .use("/",express.static(path.join(__dirname,"../dist/"))) //try to find in static files
+    .use("/content", controller) //if failed, maybe it's an api call
+    .use("/", (req, res, next) => { //otherwise just give the index.html
+        res.sendFile(path.join(__dirname, "../dist/index.html"));
+    })
     .listen(port);
 
 //remind the developer of our url

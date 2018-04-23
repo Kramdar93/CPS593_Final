@@ -11,5 +11,6 @@ export class AppComponent {
   title = 'app';
 
   constructor(private contentServer:ContentService){
+    //this is only so angular knows to inject the contentService dependency.
   }
 }

@@ -8,10 +8,10 @@ var Users = require("./Users");
 module.exports = app
     //for /user, get their profile.
     .get("/user/*", (req, res) => {
-        res.send(Users.find(x=>x.user.username == req.path.slice(6) ).user )
+        res.send(Users.find(x=>x.user.username == req.query.user) );
     })
     .get("/feed/*", (req,res) => {
-        res.send(Users.find(x=>x.user.username == req.path.slice(6) ).posts )
+        res.send(Users.find(x=>x.user.username == req.query.user).posts );
     })
     .post("/submit", (req,res)=>{
         var foundUser = Users.find(x=>x.user.username == req.body.username );
