@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  SignIn(uname:string,pword:string){
+  SignUp(uname:string,pword:string){
     //var hash = createHash('sha256');
 
     this.contentServer.SignUp(uname,

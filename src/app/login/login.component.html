@@ -2,12 +2,12 @@
   <div class="card col-sm-auto">
     <div class="card-header">Please Log In or Sign Up</div>
     <div class="card-body">
-      <p>Username: <input class="float-right" id="username" /> </p>
-      <p>Password: <input class="float-right" id="password" /> </p>
+      <p>Username: <input #uname class="float-right" id="username" /> </p>
+      <p>Password: <input #pword class="float-right" id="password" /> </p>
     </div>
     <div class="card-footer">
-      <button (click)="SignUp( getElementByID('username').value, getElementByID('password').value )" class="btn btn-primary">Sign Up</button>
-      <button (click)="LogIn( getElementByID('username').value, getElementByID('password').value )" class="btn btn-success float-right">Log In</button>
+      <button (click)="SignUp( uname.value, pword.value )" class="btn btn-primary">Sign Up</button>
+      <button (click)="LogIn( uname.value, pword.value )" class="btn btn-success float-right">Log In</button>
     </div>
   </div>
 </div> 

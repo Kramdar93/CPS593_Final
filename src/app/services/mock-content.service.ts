@@ -23,12 +23,14 @@ export class MockContentService extends ContentService {
 
   public LogIn(uname:string, phash:string){
     //ignore password hash, just return the user given (constructed since this is mock)
+    console.log(uname);
     console.log(phash);
-    return this.GetUser(uname);
+    this.currentUser = this.GetUser(uname);
+    return this.currentUser;
   }
 
   public SignUp(uname:string, phash:string){
-    return { success:true };
+    return this.LogIn(uname,phash);
   }
 
 }
