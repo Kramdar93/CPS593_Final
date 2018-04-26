@@ -1,22 +1,26 @@
 //load express and save app object
 const express = require("express");
-var app = express.Router();
+const app = express.Router();
 
-var Users = require("./Users");
+const Datastore = require("./datastore");
+var dstore = new Datastore();
 
 //export the app object
 module.exports = app
     //for /user, get their profile.
     .get("/user/*", (req, res) => {
-        res.send(Users.find(x=>x.user.username == req.query.user) );
+        res.send( dstore.GetUser(req.query.userID) );
     })
     .get("/feed/*", (req,res) => {
-        res.send(Users.find(x=>x.user.username == req.query.user).posts );
+        res.send( dstore.GetFeedByUser(req.query.userID) );
     })
     .post("/submit", (req,res)=>{
-        var foundUser = Users.find(x=>x.user.username == req.body.username );
-        if(foundUser){
-            foundUser.posts.push(req.body.post); //just push the whole json object given so client handles construction.
-        }
-        res.send({reqUser:req.body.username,fndUser:foundUser,allUsers:Users});//echo users for testing.
+        dstore.AddPost(req.body.userID, req.body.post);
+        res.send({success:true});//TODO: test for success
+    })
+    .post("/login", (req,res)=>{ //not really posting data but don't want uname/password in address bar.
+    res.send(dstore.LogIn(req.body.userID,req.body.phash));
+    })
+    .post("/signup", (req,res)=>{
+        res.send(dstore.SignUp(req.body.userID,req.body.phash));
     })
