@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from "@angular/router";
+import { Http,ConnectionBackend, HttpModule } from "@angular/http";
 
 
 import { AppComponent } from './app.component';
@@ -30,9 +31,10 @@ import { MockContentService } from './services/mock-content.service';
       {path:'friends', component:FriendsComponent},
       {path:'profile', component:ProfileComponent},
       {path:'', redirectTo:'/feed', pathMatch:'full'}
-    ])
+    ]),
+    HttpModule
   ],
-  providers: [{provide:ContentService, useClass:MockContentService}],
+  providers: [{provide:ContentService, useClass:MockContentService}], //use mock as real for now.
   bootstrap: [AppComponent]
 })
 export class AppModule { }

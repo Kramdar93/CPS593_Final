@@ -15,7 +15,8 @@ export class FriendsComponent implements OnInit {
 
   constructor(private contentServer:ContentService) {
     contentServer.currentUser.friends.forEach( 
-      (name:string) => this.friends.push(this.contentServer.GetUser(name))
+      (name:string) => this.contentServer.GetUser(name)
+                        .subscribe(data=>this.friends.push(data.json()))
     );
     console.log(this.friends.length);
   }

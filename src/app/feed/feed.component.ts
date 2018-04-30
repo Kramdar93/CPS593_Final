@@ -11,10 +11,10 @@ import { ContentService } from '../services/content.service';
 })
 export class FeedComponent implements OnInit {
 
-  posts:Post[];
+  feed:Post[];
 
   constructor(contentServer:ContentService) {
-    this.posts = contentServer.GetPosts();
+    contentServer.GetFeed().subscribe(data=>this.feed=data.json());
   }
 
   ngOnInit() {

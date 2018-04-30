@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.contentServer.LogIn(uname,
       pword
       //hash.update( pword ).digest().toString('hex')
-    );
+    ).subscribe(); //don't have to actually do anything with data since contentServer saves current user automatically.
   }
 
   SignUp(uname:string,pword:string){
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.contentServer.SignUp(uname,
       pword
       //hash.update( pword ).digest().toString('hex')
-    );
+    ).subscribe();
   }
 
 }

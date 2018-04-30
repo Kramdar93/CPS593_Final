@@ -1,11 +1,11 @@
 
 function Datastore(){
     
-    Users;  //[{userID,username,[friendIDs]},...]
-    Posts;  //[{userID,content},...]
-    credentials; //[{userID,phash},...]
+    var Users;  //[{userID,username,[friendIDs]},...]
+    var Posts;  //[{userID,content},...]
+    var credentials; //[{userID,phash},...]
 
-    nextID = 0;
+    var nextID = 0;
 
     this.SignUp = (name,phash) => {
         var id = nextID++
