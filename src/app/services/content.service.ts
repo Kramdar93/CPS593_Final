@@ -5,7 +5,7 @@ import { tap } from "rxjs/operators";
 import { Post } from "../models/post";
 import { UserProfile, Progress } from '../models/userProfile';
 
-const API:String = "localhost:8080/content";
+const API:String = "http://localhost:8080/content";
 
 @Injectable()
 export class ContentService {
@@ -33,12 +33,15 @@ export class ContentService {
 
   public LogIn(uname:string, phash:string){
     return this.http.post(API + "/login", {params:{uname:uname,phash:phash}})
-      .pipe(tap(data=>this.currentUser = data.json()));
+      .pipe(tap(data=>{
+        if (data.json().success){
+          this.currentUser = data.json().user
+        }
+      }));
   }
 
   public SignUp(uname:string, phash:string){
-    return this.http.post(API + "/signup", {params:{uname:uname,phash:phash}})
-      .pipe(tap(data=>this.currentUser = data.json()));
+    return this.http.post(API + "/signup", {params:{uname:uname,phash:phash}});
   }
 
 }

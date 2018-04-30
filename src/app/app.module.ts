@@ -34,7 +34,8 @@ import { MockContentService } from './services/mock-content.service';
     ]),
     HttpModule
   ],
-  providers: [{provide:ContentService, useClass:MockContentService}], //use mock as real for now.
+  //providers: [{provide:ContentService, useClass:MockContentService}], //use mock as real for now.
+  providers: [{provide:ContentService, useClass:ContentService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
