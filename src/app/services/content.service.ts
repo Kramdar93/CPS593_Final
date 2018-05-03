@@ -44,4 +44,12 @@ export class ContentService {
     return this.http.post(API + "/signup", {params:{uname:uname,phash:phash}});
   }
 
+  public SubmitPost(workout:string, reps:number){
+    return this.http.post(API + "/submit", {params: {userID:this.currentUser.userID,post:{workout:workout,reps:reps}} });
+  }
+
+  public Vote(pid:number,isUp:boolean){
+    return this.http.post(API + "/vote", {params: {pid:pid,isUp:isUp} });
+  }
+
 }

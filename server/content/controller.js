@@ -15,12 +15,15 @@ module.exports = app
         res.send( dstore.GetFeedByUser(req.query.userID) );
     })
     .post("/submit", (req,res)=>{
-        dstore.AddPost(req.body.userID, req.body.post);
+        dstore.AddPost(req.body.params.userID, req.body.params.post);
         res.send({success:true});//TODO: test for success
     })
     .post("/login", (req,res)=>{ //not really posting data but don't want uname/password in address bar.
-    res.send(dstore.LogIn(req.body.params.uname,req.body.params.phash));
+        res.send(dstore.LogIn(req.body.params.uname,req.body.params.phash));
     })
     .post("/signup", (req,res)=>{
         res.send(dstore.SignUp(req.body.params.uname,req.body.params.phash));
+    })
+    .post("/vote", (req,res)=>{
+        res.send(req.body.params.isUp? dstore.VoteUp(req.body.params.pid) : dstore.VoteDown(req.body.params.pid))
     })

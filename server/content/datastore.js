@@ -2,13 +2,15 @@
 function Datastore(){
     
     var Users = [];  //[{userID,username,[friendIDs]},...]
-    var Posts = [];  //[{userID,content},...]
+    var Posts = [];  //[{userID,unsername,rating,postid,content},...]
     var credentials = []; //[{userID,phash},...]
 
     var nextID = 0;
+    var nextPost = 0;
 
     this.SignUp = (name,phash) => {
         var id = nextID++
+        if(Users.find(x=>x.username == name)) { return {success:false}; }
         Users.push( {userID:id, username:name, friends:[]} );
         credentials.push({userID:id, phash:phash});
         return {success:true};
@@ -31,6 +33,7 @@ function Datastore(){
     this.GetPostsByUser = (ID) => Users.find( x=> x.userID == ID)
 
     this.GetFeedByUser = (ID) => {
+        if(!ID){return Posts} //no user, get everything.
         var result = [];
         var usr = Users.find(x => x.userID == ID)
         if(!usr) {return {success:false}}
@@ -41,7 +44,22 @@ function Datastore(){
     }
 
     this.AddPost = (ID,content)=>{
-        Posts.push({userID:ID,content:content});
+        var uname = Users.find(x=> x.userID == ID).username;
+        Posts.push({userID:ID,postID:nextPost++,username:uname,rating:0,content:content});
+    }
+
+    this.VoteUp = (pid)=>{
+        var index = Posts.findIndex(x=>x.postID==pid);
+        if(index < 0){ return{success:false}; }
+        Posts[index].rating += 1;
+        return {success:true};
+    }
+
+    this.VoteDown = (pid)=>{
+        var index = Posts.findIndex(x=>x.postID==pid);
+        if(index < 0){ return{success:false}; }
+        Posts[index].rating -= 1;
+        return {success:true};
     }
 }
 

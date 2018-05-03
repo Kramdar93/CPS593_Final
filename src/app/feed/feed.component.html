@@ -1,17 +1,44 @@
+<button (click)="Refresh()" class="btn btn-block">Refresh</button>
 <div class="row no-gutters">
-  <div class="col-md-4" *ngFor="let post of posts">
+    <div class="col-md-4">
+      <div
+          *ngIf="!editing"
+          (click)="editing=true" 
+          class="card clickable bg-primary">
+        <div class="card-header text-light">
+          Add Post
+        </div>
+        <div class="card-body text-center text-light">
+          <h1>+</h1>
+        </div>
+      </div>
+      <div
+          *ngIf="editing"
+          class="card bg-primary">
+        <div class="card-header text-light">
+          Add Post
+        </div>
+        <div class="card-body text-center text-light">
+          <p>Exercise: <input #workout class="float-right" placeholder="Exercise" /> </p>
+          <p>Reps/Miles: <input #reps class="float-right" type="number" min=1 /> </p>
+          <p> <button (click)="SubmitPost(workout.value,reps.value)" class="btn btn-success">Submit</button> </p>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-4" *ngFor="let post of feed">
     <div class="card">
       <div class="card-header text-muted">
         {{post.username}}
         <span *ngIf="post.rating>0" class="badge badge-success float-right">{{post.rating}}</span>
         <span *ngIf="post.rating<0" class="badge badge-danger float-right">{{post.rating}}</span>
         <span *ngIf="post.rating==0" class="badge badge-secondary float-right">{{post.rating}}</span>
-        <button class="btn-sm float-right" (click)="post.VoteUp()">^</button>
-        <button class="btn-sm float-right" (click)="post.VoteDown()">v</button>
+        <button class="btn-sm float-right" (click)="Vote(post.postID,true)">^</button>
+        <button class="btn-sm float-right" (click)="Vote(post.postID,false)">v</button>
       </div>
       <img *ngIf="!(post.image == null)" class="card-img-top" src={{post.image}} alt="card image" />
       <div class="card-body">
-          <p class="card-text">{{post.content}}</p>
+          <p class="card-text">Exercise: {{post.content.workout}}, reps/miles:{{post.content.reps}}</p>
+          <p class="card-text">{{post.content.text}}</p>
       </div>
       <div class="card-footer text-muted">
         <small>posted whenever</small>

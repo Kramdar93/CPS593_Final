@@ -1,6 +1,7 @@
 export class UserProfile{
 
     readonly username:string;
+    readonly userID:number;
 
     public weight:number = 0;
     public height:number = 0;

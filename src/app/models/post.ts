@@ -1,5 +1,7 @@
 export class Post{
     constructor(public username:string,
+        public userID:number,
+        public postID:number,
         public rating:number,
         public content?:string,
         public image?:string,
