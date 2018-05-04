@@ -8,12 +8,26 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="card clickable bg-primary">
+    <div
+        *ngIf="!editing"
+        (click)="editing=true" 
+        class="card clickable bg-primary">
       <div class="card-header text-light">
         Add Friend
       </div>
       <div class="card-body text-center text-light">
         <h1>+</h1>
+      </div>
+    </div>
+    <div
+        *ngIf="editing"
+        class="card bg-primary">
+      <div class="card-header text-light">
+        Add Post
+      </div>
+      <div class="card-body text-center text-light">
+        <p>Username: <input #name class="float-right" placeholder="username" /> </p>
+        <p> <button (click)="AddFriend(name.value)" class="btn btn-success">Submit</button> </p>
       </div>
     </div>
   </div>

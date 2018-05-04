@@ -11,7 +11,7 @@ function Datastore(){
     this.SignUp = (name,phash) => {
         var id = nextID++
         if(Users.find(x=>x.username == name)) { return {success:false}; }
-        Users.push( {userID:id, username:name, friends:[]} );
+        Users.push( {userID:id, username:name, friendIDs:[]} );
         credentials.push({userID:id, phash:phash});
         return {success:true};
     }
@@ -27,7 +27,7 @@ function Datastore(){
     this.GetUser = (ID) => {
         var found = Users.find(x=> x.userID == ID)
         //TODO: check falsey found
-        return found;
+        return found? found : {success:false};
     }
 
     this.GetPostsByUser = (ID) => Users.find( x=> x.userID == ID)
@@ -37,7 +37,7 @@ function Datastore(){
         var result = [];
         var usr = Users.find(x => x.userID == ID)
         if(!usr) {return {success:false}}
-        usr.friends.forEach(friendID => {
+        usr.friendIDs.forEach(friendID => {
                 result.push(Posts.find(x=> x.userID == friendID));
         });
         return result;
@@ -59,6 +59,14 @@ function Datastore(){
         var index = Posts.findIndex(x=>x.postID==pid);
         if(index < 0){ return{success:false}; }
         Posts[index].rating -= 1;
+        return {success:true};
+    }
+
+    this.AddFriend = (userID,friendName)=>{
+        var found = Users.find(x=>x.username == friendName);
+        var index = Users.findIndex(x=>x.userID == userID);
+        if(!found || index < 0) { return {success:false}; }
+        Users[index].friendIDs.push(found.userID);
         return {success:true};
     }
 }

@@ -6,7 +6,7 @@ export class UserProfile{
     public weight:number = 0;
     public height:number = 0;
 
-    public friends:string[];
+    public friendIDs:number[];
 
     public profileImage:string = "";
 
@@ -16,11 +16,11 @@ export class UserProfile{
     public progress:Progress = new Progress();
     */
 
-    constructor( name:string, wgt:number, hgt:number, newFriends:string[], public signup:Date, public birthday:Date, public progress:Progress){
+    constructor( name:string, wgt:number, hgt:number, newFriends:number[], public signup:Date, public birthday:Date, public progress:Progress){
         this.username = name;
         this.weight = wgt;
         this.height = hgt;
-        this.friends = newFriends;
+        this.friendIDs = newFriends;
     }
 } 
 

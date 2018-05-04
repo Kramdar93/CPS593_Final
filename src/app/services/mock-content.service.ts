@@ -51,12 +51,12 @@ export class MockContentService extends ContentService {
     return res;
   }
 
-  public GetUser(name:string){
+  public GetUser(ID:number){
     var res = Observable.of(
       new Response(
         new ResponseOptions({
           body:JSON.stringify(
-            new UserProfile(name, 200, 6, ["alice","bob","charlie"], new Date(), new Date(), new Progress()) 
+            new UserProfile(name, 200, 6, [1,2,3], new Date(), new Date(), new Progress()) 
           )
         })
       )
@@ -67,7 +67,7 @@ export class MockContentService extends ContentService {
 
   public LogIn(uname:string, phash:string){
     //ignore password hash, just make the user given
-    return this.GetUser(uname).pipe(tap(data=>this.currentUser=data.json()));
+    return this.GetUser(0).pipe(tap(data=>this.currentUser=data.json()));
   }
 
   public SignUp(uname:string, phash:string){

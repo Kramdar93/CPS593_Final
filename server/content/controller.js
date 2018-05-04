@@ -8,10 +8,10 @@ var dstore = new Datastore();
 //export the app object
 module.exports = app
     //for /user, get their profile.
-    .get("/user/*", (req, res) => {
+    .get("/user", (req, res) => {
         res.send( dstore.GetUser(req.query.userID) );
     })
-    .get("/feed/*", (req,res) => {
+    .get("/feed", (req,res) => {
         res.send( dstore.GetFeedByUser(req.query.userID) );
     })
     .post("/submit", (req,res)=>{
@@ -26,4 +26,7 @@ module.exports = app
     })
     .post("/vote", (req,res)=>{
         res.send(req.body.params.isUp? dstore.VoteUp(req.body.params.pid) : dstore.VoteDown(req.body.params.pid))
+    })
+    .post("/add",(req,res)=>{
+        res.send(dstore.AddFriend(req.body.params.userID,req.body.params.friendName));
     })

@@ -32,8 +32,8 @@
         <span *ngIf="post.rating>0" class="badge badge-success float-right">{{post.rating}}</span>
         <span *ngIf="post.rating<0" class="badge badge-danger float-right">{{post.rating}}</span>
         <span *ngIf="post.rating==0" class="badge badge-secondary float-right">{{post.rating}}</span>
-        <button class="btn-sm float-right" (click)="Vote(post.postID,true)">^</button>
-        <button class="btn-sm float-right" (click)="Vote(post.postID,false)">v</button>
+        <button class="btn btn-sm float-right" (click)="Vote(post.postID,true)">&uarr;</button>
+        <button class="btn btn-sm float-right" (click)="Vote(post.postID,false)">&darr;</button>
       </div>
       <img *ngIf="!(post.image == null)" class="card-img-top" src={{post.image}} alt="card image" />
       <div class="card-body">

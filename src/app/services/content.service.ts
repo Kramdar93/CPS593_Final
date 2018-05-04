@@ -22,13 +22,13 @@ export class ContentService {
   }
 
   public GetPosts(name:string){
-    return this.http.get(API + "/user/" + name) //get the user
+    return this.http.get(API + "/user/",{params: {username:name}}) //get the user
       .pipe(tap(data=>data.json().posts)); //peel their post data off
       //there are examples online of map() replacing pipe(tap()) but not sure from what library.
   }
 
-  public GetUser(name:string){
-    return this.http.get(API + "/user/" + name);
+  public GetUser(id:number){
+    return this.http.get(API + "/user/",{params: {userID:id}});
   }
 
   public LogIn(uname:string, phash:string){
@@ -50,6 +50,15 @@ export class ContentService {
 
   public Vote(pid:number,isUp:boolean){
     return this.http.post(API + "/vote", {params: {pid:pid,isUp:isUp} });
+  }
+
+  public AddFriend(uname:string){
+    return this.http.post(API + "/add", {params: {userID:this.currentUser.userID,friendName:uname} })
+      .pipe(tap(data=>this.RefreshUser()));
+  }
+
+  private RefreshUser(){
+    this.GetUser(this.currentUser.userID).pipe(tap(data=>this.currentUser = data.json())).subscribe();
   }
 
 }

@@ -13,17 +13,28 @@ export class FriendsComponent implements OnInit {
 
   friends:UserProfile[] = [];
 
+  editing:boolean = false;
+
   constructor(private contentServer:ContentService) {
-    if(contentServer.currentUser.friends)
+    this.Refresh();
+  }
+
+  Refresh(){
+    if(this.contentServer.currentUser.friendIDs)
     {
-      contentServer.currentUser.friends.forEach( 
-        (name:string) => this.contentServer.GetUser(name)
+      this.friends = [];
+      this.contentServer.currentUser.friendIDs.forEach( 
+        (id:number) => this.contentServer.GetUser(id)
                           .subscribe(data=>this.friends.push(data.json()))
       );
     }
   }
 
   ngOnInit() {
+  }
+
+  AddFriend(name:string){
+    this.contentServer.AddFriend(name).subscribe( data=>this.Refresh() );
   }
 
 }
