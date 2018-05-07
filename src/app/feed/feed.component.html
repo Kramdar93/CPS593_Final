@@ -19,8 +19,8 @@
           Add Post
         </div>
         <div class="card-body text-center text-light">
-          <p>Exercise: <input #workout class="float-right" placeholder="Exercise" /> </p>
-          <p>Reps/Miles: <input #reps class="float-right" type="number" min=1 /> </p>
+          <div class="row justify-content-between">Exercise: <input #workout placeholder="Exercise" /> </div>
+          <div class="row justify-content-between">Reps/Miles: <input #reps type="number" min=1 /> </div>
           <p> <button (click)="SubmitPost(workout.value,reps.value)" class="btn btn-success">Submit</button> </p>
         </div>
       </div>

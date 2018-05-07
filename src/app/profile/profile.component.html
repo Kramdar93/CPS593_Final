@@ -4,6 +4,11 @@
   <li>Height: {{contentServer.currentUser.height}}</li>
   <li>Weight: {{contentServer.currentUser.weight}}</li>
 </ul>
+Exercise totals:
+<ul>
+  <li *ngFor="let total of totals">{{total.type}}: {{total.amount}}</li>
+</ul>
+Friends:
 <ul>
   <li *ngFor="let friend of contentServer.currentUser.friends">{{friend}}</li>
 </ul>
