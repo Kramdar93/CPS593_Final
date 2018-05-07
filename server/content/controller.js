@@ -11,6 +11,9 @@ module.exports = app
     .get("/user", (req, res) => {
         res.send( dstore.GetUser(req.query.userID) );
     })
+    .get("/user/posts", (req, res) => {
+        res.send( dstore.GetPostsByUser(req.query.userID) );
+    })
     .get("/feed", (req,res) => {
         res.send( dstore.GetFeedByUser(req.query.userID) );
     })

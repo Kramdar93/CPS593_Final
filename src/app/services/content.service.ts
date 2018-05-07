@@ -21,10 +21,8 @@ export class ContentService {
     return this.http.get(API + "/feed/");
   }
 
-  public GetPosts(name:string){
-    return this.http.get(API + "/user/",{params: {username:name}}) //get the user
-      .pipe(tap(data=>data.json().posts)); //peel their post data off
-      //there are examples online of map() replacing pipe(tap()) but not sure from what library.
+  public GetPosts(ID:number){
+    return this.http.get(API + "/user/posts",{params: {userID:ID}}) //get the users posts
   }
 
   public GetUser(id:number){
@@ -38,6 +36,7 @@ export class ContentService {
           this.currentUser = data.json().user
         }
       }));
+      //there are examples online of map() replacing pipe(tap()) but not sure from what library.
   }
 
   public SignUp(uname:string, phash:string){

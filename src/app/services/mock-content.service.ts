@@ -17,7 +17,7 @@ export class MockContentService extends ContentService {
   //found out about observable spoofing here:
   //https://stackoverflow.com/questions/35219713/how-to-create-an-observable-from-static-data-similar-to-http-one-in-angular#35219772
   //and documentation for Response/ResponseOptions from angular documentation.
-  public GetPosts(name:string){
+  public GetPosts(ID:number){
     var res = Observable.of(
       new Response(
         new ResponseOptions({

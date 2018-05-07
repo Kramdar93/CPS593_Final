@@ -30,7 +30,10 @@ function Datastore(){
         return found? found : {success:false};
     }
 
-    this.GetPostsByUser = (ID) => Users.find( x=> x.userID == ID)
+    this.GetPostsByUser = (ID) => {
+        var found = Posts.filter( x=> x.userID == ID)
+        return found.length>0? found : {success:false};
+    }
 
     this.GetFeedByUser = (ID) => {
         if(!ID){return Posts} //no user, get everything.
@@ -38,7 +41,7 @@ function Datastore(){
         var usr = Users.find(x => x.userID == ID)
         if(!usr) {return {success:false}}
         usr.friendIDs.forEach(friendID => {
-                result.push(Posts.find(x=> x.userID == friendID));
+                result.push(Posts.filter(x=> x.userID == friendID));
         });
         return result;
     }
@@ -66,6 +69,7 @@ function Datastore(){
         var found = Users.find(x=>x.username == friendName);
         var index = Users.findIndex(x=>x.userID == userID);
         if(!found || index < 0) { return {success:false}; }
+        if(Users[index].friendIDs.find(x=>x==found.userID)) { return {success:false}; }
         Users[index].friendIDs.push(found.userID);
         return {success:true};
     }
