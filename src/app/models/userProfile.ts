@@ -1,12 +1,13 @@
 export class UserProfile{
 
     readonly username:string;
-    readonly userID:number;
+    readonly userID:string;
+    readonly picture:string;
 
     public weight:number = 0;
     public height:number = 0;
 
-    public friendIDs:number[];
+    public friendIDs:string[];
 
     public profileImage:string = "";
 
@@ -16,11 +17,10 @@ export class UserProfile{
     public progress:Progress = new Progress();
     */
 
-    constructor( name:string, wgt:number, hgt:number, newFriends:number[], public signup:Date, public birthday:Date, public progress:Progress){
+    constructor(name:string,tok:string,pic:string){
         this.username = name;
-        this.weight = wgt;
-        this.height = hgt;
-        this.friendIDs = newFriends;
+        this.userID = tok;
+        this.picture = pic;
     }
 } 
 

@@ -21,11 +21,11 @@ export class ContentService {
     return this.http.get(API + "/feed/");
   }
 
-  public GetPosts(ID:number){
+  public GetPosts(ID:string){
     return this.http.get(API + "/user/posts",{params: {userID:ID}}) //get the users posts
   }
 
-  public GetUser(id:number){
+  public GetUser(id:string){
     return this.http.get(API + "/user/",{params: {userID:id}});
   }
 
@@ -39,8 +39,8 @@ export class ContentService {
       //there are examples online of map() replacing pipe(tap()) but not sure from what library.
   }
 
-  public SignUp(uname:string, phash:string){
-    return this.http.post(API + "/signup", {params:{uname:uname,phash:phash}});
+  public SignUp(uname:string, tok:string){
+    return this.http.post(API + "/signup", {params:{uname:uname,tok:tok}});
   }
 
   public SubmitPost(workout:string, reps:number){
@@ -58,6 +58,11 @@ export class ContentService {
 
   private RefreshUser(){
     this.GetUser(this.currentUser.userID).pipe(tap(data=>this.currentUser = data.json())).subscribe();
+  }
+
+  public oAuthLogIn(name:string, token:string, pic:string){
+    this.currentUser = new UserProfile(name, token, pic);
+    this.SignUp(name,token).subscribe(); //use token as password i guess
   }
 
 }

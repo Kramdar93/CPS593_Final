@@ -5,14 +5,12 @@ function Datastore(){
     var Posts = [];  //[{userID,unsername,rating,postid,content},...]
     var credentials = []; //[{userID,phash},...]
 
-    var nextID = 0;
+    //var nextID = 0;
     var nextPost = 0;
 
-    this.SignUp = (name,phash) => {
-        var id = nextID++
-        if(Users.find(x=>x.username == name)) { return {success:false}; }
+    this.SignUp = (name,id) => {
+        if(Users.find(x=>x.userID == id)) { return {success:false}; } //allow same names, not tokens.
         Users.push( {userID:id, username:name, friendIDs:[]} );
-        credentials.push({userID:id, phash:phash});
         return {success:true};
     }
 

@@ -25,7 +25,7 @@ module.exports = app
         res.send(dstore.LogIn(req.body.params.uname,req.body.params.phash));
     })
     .post("/signup", (req,res)=>{
-        res.send(dstore.SignUp(req.body.params.uname,req.body.params.phash));
+        res.send(dstore.SignUp(req.body.params.uname,req.body.params.tok));
     })
     .post("/vote", (req,res)=>{
         res.send(req.body.params.isUp? dstore.VoteUp(req.body.params.pid) : dstore.VoteDown(req.body.params.pid))

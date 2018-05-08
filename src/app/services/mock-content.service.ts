@@ -17,7 +17,7 @@ export class MockContentService extends ContentService {
   //found out about observable spoofing here:
   //https://stackoverflow.com/questions/35219713/how-to-create-an-observable-from-static-data-similar-to-http-one-in-angular#35219772
   //and documentation for Response/ResponseOptions from angular documentation.
-  public GetPosts(ID:number){
+  public GetPosts(ID:string){
     var res = Observable.of(
       new Response(
         new ResponseOptions({
@@ -51,12 +51,13 @@ export class MockContentService extends ContentService {
     return res;
   }
 
-  public GetUser(ID:number){
+  public GetUser(ID:string){
     var res = Observable.of(
       new Response(
         new ResponseOptions({
           body:JSON.stringify(
-            new UserProfile(name, 200, 6, [1,2,3], new Date(), new Date(), new Progress()) 
+            //new UserProfile(name, 200, 6, [1,2,3], new Date(), new Date(), new Progress()) 
+            new UserProfile(name,ID,"") 
           )
         })
       )
@@ -67,7 +68,7 @@ export class MockContentService extends ContentService {
 
   public LogIn(uname:string, phash:string){
     //ignore password hash, just make the user given
-    return this.GetUser(0).pipe(tap(data=>this.currentUser=data.json()));
+    return this.GetUser("0").pipe(tap(data=>this.currentUser=data.json()));
   }
 
   public SignUp(uname:string, phash:string){

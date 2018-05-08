@@ -24,7 +24,7 @@ export class FriendsComponent implements OnInit {
     {
       this.friends = [];
       this.contentServer.currentUser.friendIDs.forEach( 
-        (id:number) => this.contentServer.GetUser(id)
+        (id:string) => this.contentServer.GetUser(id)
                           .subscribe(data=>this.friends.push(data.json()))
       );
     }
