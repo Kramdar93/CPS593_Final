@@ -9,6 +9,9 @@ import { UserProfile, Progress } from '../models/userProfile';
 
 import { ContentService } from './content.service';
 
+//This was fun while it lasted, but should now be considered deeply depreciated. 
+//Server work has left this far behind. Given the work needed to make it mimic
+//server responses, it is very low priority.
 @Injectable()
 export class MockContentService extends ContentService {
 

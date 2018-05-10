@@ -20,6 +20,8 @@ export class FriendsComponent implements OnInit {
     this.Refresh();
   }
 
+  //refreshes friend list.
+  //TODO: make this take less time for better responsiveness somehow.
   Refresh(){
     if(this.contentServer.currentUser.friendIDs)
     {

@@ -10,8 +10,10 @@ const API:String = "http://localhost:8080/content";
 @Injectable()
 export class ContentService {
 
+  //the logged in user
   currentUser:UserProfile;
 
+  //the user information to be displayed
   targetUser:UserProfile;
 
   constructor(private http:Http) { }

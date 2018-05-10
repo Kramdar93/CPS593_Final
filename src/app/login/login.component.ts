@@ -14,6 +14,7 @@ declare var googleyolo:any;
 export class LoginComponent implements OnInit {
 
   constructor(private contentServer:ContentService) {
+    //cpy/paste from Spring2018 example project.
     googleyolo.hint({
       supportedAuthMethods: [
         "https://accounts.google.com"
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
         }
       ]
     }).then((credentials:any)=>{
-      console.log(credentials);
+      //console.log(credentials);
       contentServer.oAuthLogIn(credentials.displayName,credentials.id,credentials.profilePicture);
     });
    }

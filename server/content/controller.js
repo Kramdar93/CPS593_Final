@@ -7,7 +7,7 @@ var dstore = new Datastore();
 
 //export the app object
 module.exports = app
-    //for /user, get their profile.
+    //each handler is basically a wrapper for the datastore object.
     .get("/user", (req, res) => {
         res.send( dstore.GetUser(req.query.userID) );
     })
@@ -27,7 +27,7 @@ module.exports = app
     .post("/signup", (req,res)=>{
         res.send(dstore.SignUp(req.body.params.uname,req.body.params.tok));
     })
-    .post("/vote", (req,res)=>{
+    .post("/vote", (req,res)=>{ //delegate to the relevant method.
         res.send(req.body.params.isUp? dstore.VoteUp(req.body.params.pid) : dstore.VoteDown(req.body.params.pid))
     })
     .post("/add",(req,res)=>{

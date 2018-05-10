@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
   }
 
   AddDetail(dname:string,dvalue:number|string){
-    if(!this.contentServer.currentUser.info)
+    if(!this.contentServer.currentUser.info) //empty objects/arrays are NOT sent by express, so check and init if needed.
     {
       this.contentServer.currentUser.info = [{name:dname,value:dvalue}];
     }
@@ -48,10 +48,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  //typeof has problems in *ngIf for whatever reason, so make a wrapper for it.
   TypeOfWrapper(val:any){
     return typeof val;
   }
 
+  //more shorthand for use in *ng stuff.
   SameProfile(){
     return this.contentServer.currentUser.userID == this.contentServer.targetUser.userID;
   }
