@@ -11,7 +11,9 @@ export class ProfileComponent implements OnInit {
 
   totals:{type:string,amount:number}[] = [];
 
-  constructor(private contentServer:ContentService) {
+  editing:boolean = false;
+
+  constructor(public contentServer:ContentService) {
     //don't have to even track user now, just use the content service.
     contentServer.GetPosts(contentServer.currentUser.userID).subscribe(data=>{
       console.log(data);
@@ -31,4 +33,22 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  UpdateProfile(){
+    this.contentServer.UpdateUserInfo().subscribe();
+    this.editing = false;
+  }
+
+  AddDetail(dname:string,dvalue:number|string){
+    if(!this.contentServer.currentUser.info)
+    {
+      this.contentServer.currentUser.info = [{name:dname,value:dvalue}];
+    }
+    else{
+      this.contentServer.currentUser.info.push({name:dname,value:dvalue});
+    }
+  }
+
+  TypeOfWrapper(val:any){
+    return typeof val;
+  }
 }

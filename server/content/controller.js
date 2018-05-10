@@ -33,3 +33,9 @@ module.exports = app
     .post("/add",(req,res)=>{
         res.send(dstore.AddFriend(req.body.params.userID,req.body.params.friendName));
     })
+    .post("/update",(req,res)=>{
+        res.send(dstore.Update(req.body.params.userID,req.body.params.info));
+    })
+    .post("/save", (req,res)=>{
+        res.send(dstore.Save());
+    })

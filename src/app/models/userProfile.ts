@@ -4,10 +4,12 @@ export class UserProfile{
     readonly userID:string;
     readonly picture:string;
 
-    public weight:number = 0;
-    public height:number = 0;
+    //public weight:number = 0;
+    //public height:number = 0;
 
     public friendIDs:string[];
+
+    public info:{name:string,value:number|string}[];
 
     public profileImage:string = "";
 

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from "@angular/router";
 import { Http,ConnectionBackend, HttpModule } from "@angular/http";
+import { FormsModule } from "@angular/forms";
 
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { MockContentService } from './services/mock-content.service';
     LoginComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     RouterModule.forRoot([
       {path:'feed', component:FeedComponent},

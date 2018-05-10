@@ -65,4 +65,9 @@ export class ContentService {
     this.SignUp(name,token).subscribe(); //use token as password i guess
   }
 
+  public UpdateUserInfo(){
+    return this.http.post(API + "/update", {params: {userID:this.currentUser.userID,info:this.currentUser.info} })
+      .pipe(tap(data=>this.currentUser = data.json()));
+  }
+
 }

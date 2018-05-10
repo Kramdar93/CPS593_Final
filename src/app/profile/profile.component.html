@@ -1,9 +1,35 @@
 <span class="badge badge-primary float-left">profile picture</span>
 <h2>{{contentServer.currentUser.username}}</h2>
-<ul>
-  <li>Height: {{contentServer.currentUser.height}}</li>
-  <li>Weight: {{contentServer.currentUser.weight}}</li>
-</ul>
+<div class="card col-sm-auto">
+  <div class="card-header">Details</div>
+  <div class="card-body">
+    <div *ngIf="contentServer.currentUser.info">
+      <ul *ngIf="!editing">
+        <li *ngFor="let elem of contentServer.currentUser.info">
+          {{elem.name}}: {{elem.value}} 
+        </li>
+      </ul>
+      <ul *ngIf="editing">
+        <li *ngFor="let elem of contentServer.currentUser.info; let index = index">
+          {{elem.name}}: 
+            <input [(ngModel)]="contentServer.currentUser.info[index].value" placeholder="{{elem.value}}"/>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="editing">
+      <p>Add new text: <input #detailName1 /> <input type="text" #detailValue1 /> </p>
+      <p><button (click)="AddDetail(detailName1.value,detailValue1.value)" class="btn btn-md">Add</button></p>
+      <p>Add new number: <input #detailName2 /> <input type="number" #detailValue2 /> </p>
+      <p><button (click)="AddDetail(detailName2.value,detailValue2.value)" class="btn btn-md">Add</button></p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button *ngIf="!editing" (click)="editing = true" class="btn btn-md">Edit</button>
+    <button *ngIf="editing" (click)="UpdateProfile()" class="btn btn-md">Save</button>
+  </div>
+</div>
+
+
 Exercise totals:
 <ul>
   <li *ngFor="let total of totals">{{total.type}}: {{total.amount}}</li>
