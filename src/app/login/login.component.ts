@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
         }
       ]
     }).then((credentials:any)=>{
-      //console.log(credentials);
-      contentServer.oAuthLogIn(credentials.displayName,credentials.idToken,credentials.profilePicture);
+      console.log(credentials);
+      contentServer.oAuthLogIn(credentials.displayName,credentials.id,credentials.profilePicture);
     });
    }
 

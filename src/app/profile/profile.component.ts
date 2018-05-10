@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   constructor(public contentServer:ContentService) {
     //don't have to even track user now, just use the content service.
     contentServer.GetPosts(contentServer.currentUser.userID).subscribe(data=>{
-      console.log(data);
+      //console.log(data);
       for (const post of data.json()) {
         var index = this.totals.findIndex(x=>x.type==post.content.workout);
         if (index < 0){ //not found
