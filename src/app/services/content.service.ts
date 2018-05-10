@@ -12,6 +12,8 @@ export class ContentService {
 
   currentUser:UserProfile;
 
+  targetUser:UserProfile;
+
   constructor(private http:Http) { }
 
   public GetFeed(){
@@ -61,8 +63,13 @@ export class ContentService {
   }
 
   public oAuthLogIn(name:string, token:string, pic:string){
-    this.currentUser = new UserProfile(name, token, pic);
-    this.SignUp(name,token).subscribe(); //use token as password i guess
+    //this.currentUser = new UserProfile(name, token, pic);
+    this.SignUp(name,token).subscribe(data=>{
+      this.GetUser(token).subscribe(usr=>{
+        this.currentUser = usr.json();
+        this.targetUser = this.currentUser;
+      })
+    }); //use token as password i guess
   }
 
   public UpdateUserInfo(){

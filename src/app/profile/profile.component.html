@@ -1,18 +1,18 @@
 <span class="badge badge-primary float-left">profile picture</span>
-<h2>{{contentServer.currentUser.username}}</h2>
+<h2>{{contentServer.targetUser.username}}</h2>
 <div class="card col-sm-auto">
   <div class="card-header">Details</div>
   <div class="card-body">
-    <div *ngIf="contentServer.currentUser.info">
+    <div *ngIf="contentServer.targetUser.info">
       <ul *ngIf="!editing">
-        <li *ngFor="let elem of contentServer.currentUser.info">
+        <li *ngFor="let elem of contentServer.targetUser.info">
           {{elem.name}}: {{elem.value}} 
         </li>
       </ul>
       <ul *ngIf="editing">
-        <li *ngFor="let elem of contentServer.currentUser.info; let index = index">
+        <li *ngFor="let elem of contentServer.targetUser.info; let index = index">
           {{elem.name}}: 
-            <input [(ngModel)]="contentServer.currentUser.info[index].value" placeholder="{{elem.value}}"/>
+            <input [(ngModel)]="contentServer.targetUser.info[index].value" placeholder="{{elem.value}}"/>
         </li>
       </ul>
     </div>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="card-footer">
-    <button *ngIf="!editing" (click)="editing = true" class="btn btn-md">Edit</button>
+    <button *ngIf="!editing && SameProfile()" (click)="editing = true" class="btn btn-md">Edit</button>
     <button *ngIf="editing" (click)="UpdateProfile()" class="btn btn-md">Save</button>
   </div>
 </div>
@@ -36,5 +36,5 @@ Exercise totals:
 </ul>
 Friends:
 <ul>
-  <li *ngFor="let friend of contentServer.currentUser.friends">{{friend}}</li>
+  <li *ngFor="let friend of contentServer.targetUser.friends">{{friend}}</li>
 </ul>

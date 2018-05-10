@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 
 import { ContentService } from '../services/content.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -15,7 +16,7 @@ export class FeedComponent implements OnInit {
 
   editing:boolean = false;
 
-  constructor(public contentServer:ContentService) {
+  constructor(public contentServer:ContentService, private router:Router) {
     contentServer.GetFeed().subscribe(data=>this.feed=data.json());
   }
 
@@ -32,5 +33,12 @@ export class FeedComponent implements OnInit {
 
   Vote(pid:number, isUp:boolean){
     this.contentServer.Vote(pid,isUp).subscribe(data=>this.Refresh());
+  }
+
+  ViewProfile(id:string){
+    this.contentServer.GetUser(id).subscribe(data=>{
+      this.contentServer.targetUser = data.json();
+      this.router.navigate(['/profile']);
+    });
   }
 }

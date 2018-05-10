@@ -1,5 +1,7 @@
 <nav class="nav nav-tabs nav-justified">
   <a class="nav-item nav-link" routerLink="feed" routerLinkActive="active nav-item-primary">Feed</a>
   <a class="nav-item nav-link" routerLink="friends" routerLinkActive="active nav-item-primary">Friends</a>
-  <a class="nav-item nav-link" routerLink="profile" routerLinkActive="active nav-item-primary">Profile</a>
+  <a
+    (click)="contentServer.targetUser=contentServer.currentUser"
+  class="nav-item nav-link" routerLink="profile" routerLinkActive="active nav-item-primary">Profile</a>
 </nav>

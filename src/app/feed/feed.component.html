@@ -26,7 +26,7 @@
       </div>
     </div>
   <div class="col-md-4" *ngFor="let post of feed">
-    <div class="card">
+    <div class="card clickable" (click)="ViewProfile(post.userID)">
       <div class="card-header text-muted">
         {{post.username}}
         <span *ngIf="post.rating>0" class="badge badge-success float-right">{{post.rating}}</span>

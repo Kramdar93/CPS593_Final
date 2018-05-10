@@ -51,4 +51,8 @@ export class ProfileComponent implements OnInit {
   TypeOfWrapper(val:any){
     return typeof val;
   }
+
+  SameProfile(){
+    return this.contentServer.currentUser.userID == this.contentServer.targetUser.userID;
+  }
 }

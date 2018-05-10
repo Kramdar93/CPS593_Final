@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserProfile } from '../models/userProfile';
 
@@ -15,7 +16,7 @@ export class FriendsComponent implements OnInit {
 
   editing:boolean = false;
 
-  constructor(private contentServer:ContentService) {
+  constructor(private contentServer:ContentService, private router:Router) {
     this.Refresh();
   }
 
@@ -37,4 +38,8 @@ export class FriendsComponent implements OnInit {
     this.contentServer.AddFriend(name).subscribe( data=>this.Refresh() );
   }
 
+  ViewFriend(id:string){
+    this.contentServer.targetUser = this.friends.find(x=>x.userID == id);
+    this.router.navigate(['/profile']);
+  }
 }
