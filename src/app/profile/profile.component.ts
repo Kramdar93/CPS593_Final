@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserProfile } from '../models/userProfile';
 import { ContentService } from '../services/content.service';
 
@@ -11,9 +13,11 @@ export class ProfileComponent implements OnInit {
 
   totals:{type:string,amount:number}[] = [];
 
+  friends:UserProfile[] = [];
+
   editing:boolean = false;
 
-  constructor(public contentServer:ContentService) {
+  constructor(public contentServer:ContentService, private router:Router) {
     //don't have to even track user now, just use the content service.
     contentServer.GetPosts(contentServer.currentUser.userID).subscribe(data=>{
       //console.log(data);
@@ -27,6 +31,16 @@ export class ProfileComponent implements OnInit {
         }
       }
     });
+
+    //load friends
+    if(this.contentServer.currentUser.friendIDs)
+    {
+      this.friends = [];
+      this.contentServer.currentUser.friendIDs.forEach( 
+        (id:string) => this.contentServer.GetUser(id)
+                          .subscribe(data=>this.friends.push(data.json()))
+      );
+    }
     
   }
 
@@ -56,5 +70,10 @@ export class ProfileComponent implements OnInit {
   //more shorthand for use in *ng stuff.
   SameProfile(){
     return this.contentServer.currentUser.userID == this.contentServer.targetUser.userID;
+  }
+
+  ViewFriend(id:string){
+    this.contentServer.targetUser = this.friends.find(x=>x.userID == id);
+    this.router.navigate(['/profile']);
   }
 }

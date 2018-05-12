@@ -11,7 +11,7 @@ export class UserProfile{
 
     public info:{name:string,value:number|string}[];
 
-    public profileImage:string = "";
+    public profilePicture:string = "";
 
     /*
     public signupDate:Date = new Date();

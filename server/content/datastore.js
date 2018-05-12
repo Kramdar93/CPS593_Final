@@ -15,9 +15,9 @@ function Datastore(){
     var nextPost = prevData.nextPost;
 
     //creates new blank user with the given name and id and pushes onto the users list.
-    this.SignUp = (name,id) => {
+    this.SignUp = (name,id,pic) => {
         if(Users.find(x=>x.userID == id)) { return {success:false}; } //allow same names, not tokens.
-        Users.push( {userID:id, username:name, friendIDs:[], info:[]} );
+        Users.push( {userID:id, username:name, friendIDs:[], info:[], profilePicture:pic} );
         return {success:true};
     }
 

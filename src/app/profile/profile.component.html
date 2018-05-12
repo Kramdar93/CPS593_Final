@@ -1,5 +1,10 @@
-<span class="badge badge-primary float-left">profile picture</span>
-<h2>{{contentServer.targetUser.username}}</h2>
+<div class="card col-sm-auto">
+  <div class="card-header">{{contentServer.targetUser.username}}</div>
+  <div class="card-body">
+    <img [src]="contentServer.targetUser.profilePicture" />
+  </div>
+</div>
+
 <div class="card col-sm-auto">
   <div class="card-header">Details</div>
   <div class="card-body">
@@ -29,12 +34,13 @@
   </div>
 </div>
 
-
+<div class="card">
 Exercise totals:
 <ul>
   <li *ngFor="let total of totals">{{total.type}}: {{total.amount}}</li>
 </ul>
 Friends:
 <ul>
-  <li *ngFor="let friend of contentServer.targetUser.friends">{{friend}}</li>
+  <li class="clickable" (click)="ViewFriend(friend.userID)" *ngFor="let friend of friends">{{friend.username}}</li>
 </ul>
+</div>

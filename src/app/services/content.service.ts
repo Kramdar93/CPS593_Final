@@ -43,7 +43,10 @@ export class ContentService {
       //there are examples online of map() replacing pipe(tap()) but not sure from what library.
   }
 
-  public SignUp(uname:string, tok:string){
+  public SignUp(uname:string, tok:string, pic?:string){
+    if (pic){
+      return this.http.post(API + "/signup", {params:{uname:uname,tok:tok,pic:pic}});
+    }
     return this.http.post(API + "/signup", {params:{uname:uname,tok:tok}});
   }
 
@@ -66,7 +69,7 @@ export class ContentService {
 
   public oAuthLogIn(name:string, token:string, pic:string){
     //this.currentUser = new UserProfile(name, token, pic);
-    this.SignUp(name,token).subscribe(data=>{
+    this.SignUp(name,token, pic).subscribe(data=>{
       this.GetUser(token).subscribe(usr=>{
         this.currentUser = usr.json();
         this.targetUser = this.currentUser;
