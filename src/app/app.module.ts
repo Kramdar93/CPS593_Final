@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 
 import { ContentService } from "./services/content.service";
 import { MockContentService } from './services/mock-content.service';
+import { MessageService } from "./services/message.service";
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { MockContentService } from './services/mock-content.service';
     FeedComponent,
     ProfileComponent,
     FriendsComponent,
-    LoginComponent
+    LoginComponent,
+    MessagesComponent
   ],
   imports: [
     FormsModule,
@@ -37,7 +40,8 @@ import { MockContentService } from './services/mock-content.service';
     HttpModule
   ],
   //providers: [{provide:ContentService, useClass:MockContentService}], //use mock as real for now.
-  providers: [{provide:ContentService, useClass:ContentService}],
+  providers: [{provide:ContentService, useClass:ContentService},
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

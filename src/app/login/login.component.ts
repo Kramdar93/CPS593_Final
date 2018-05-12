@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 //import { Hash, createHash } from "crypto";
 
 import { ContentService } from '../services/content.service';
+import { MessageService } from '../services/message.service';
 
 declare var googleyolo:any;
 
@@ -13,7 +14,7 @@ declare var googleyolo:any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private contentServer:ContentService) {
+  constructor(private contentServer:ContentService, private msg:MessageService) {
     //cpy/paste from Spring2018 example project.
     googleyolo.hint({
       supportedAuthMethods: [
@@ -41,7 +42,13 @@ export class LoginComponent implements OnInit {
     this.contentServer.LogIn(uname,
       pword
       //hash.update( pword ).digest().toString('hex')
-    ).subscribe(); //don't have to actually do anything with data since contentServer saves current user automatically.
+    ).subscribe(data=>{
+      if(!data.json().success)
+      {
+        //alert user
+        this.msg.messages.push({text:"Invalid Login!", type:"danger"});
+      }
+    }); //don't have to actually do anything with data since contentServer saves current user automatically.
   }
 
   SignUp(uname:string,pword:string){

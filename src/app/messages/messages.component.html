@@ -1,0 +1,10 @@
+<div id="messages">
+  <div
+      *ngFor="let m of msg.messages; let i = index"
+      class="alert alert-{{m.type}}">
+      {{m.text}}
+      <!-- Fix bootstrap displaying. -->
+      <button class="close" (click)="delete(i)">&times;</button>
+  </div>    
+</div>
+
