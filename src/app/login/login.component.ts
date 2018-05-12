@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.contentServer.SignUp(uname,
       pword
       //hash.update( pword ).digest().toString('hex')
-    ).subscribe();
+    ).subscribe( data=> this.msg.messages.push({text:"Signup Successful!", type:"success"}) );
   }
 
 }

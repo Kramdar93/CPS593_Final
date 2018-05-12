@@ -4,6 +4,7 @@ import { Post } from '../models/post';
 
 import { ContentService } from '../services/content.service';
 import { Router } from '@angular/router';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-feed',
@@ -16,7 +17,9 @@ export class FeedComponent implements OnInit {
 
   editing:boolean = false;
 
-  constructor(public contentServer:ContentService, private router:Router) {
+  constructor(public contentServer:ContentService,
+    private msg:MessageService,
+    private router:Router) {
     contentServer.GetFeed().subscribe(data=>this.feed=data.json());
   }
 
@@ -24,7 +27,10 @@ export class FeedComponent implements OnInit {
   }
 
   SubmitPost(workout:string,reps:number){
-    this.contentServer.SubmitPost(workout,reps).subscribe(data=>this.Refresh());
+    this.contentServer.SubmitPost(workout,reps).subscribe(data=>{
+      this.Refresh();
+      this.msg.messages.push({text:"Post Submitted!",type:"success"});
+    });
   }
 
   Refresh(){

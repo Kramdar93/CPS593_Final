@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserProfile } from '../models/userProfile';
 
 import { ContentService } from '../services/content.service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-friends',
@@ -16,7 +17,9 @@ export class FriendsComponent implements OnInit {
 
   editing:boolean = false;
 
-  constructor(private contentServer:ContentService, private router:Router) {
+  constructor(private contentServer:ContentService,
+    private msg:MessageService,
+    private router:Router) {
     this.Refresh();
   }
 
@@ -38,6 +41,8 @@ export class FriendsComponent implements OnInit {
 
   AddFriend(name:string){
     this.contentServer.AddFriend(name).subscribe( data=>this.Refresh() );
+    //give immediate feedback since this takes a while for some reason
+    this.msg.messages.push({text:"Friend Added!",type:"success"});
   }
 
   ViewFriend(id:string){
