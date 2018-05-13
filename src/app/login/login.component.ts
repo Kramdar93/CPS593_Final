@@ -15,22 +15,7 @@ declare var googleyolo:any;
 export class LoginComponent implements OnInit {
 
   constructor(private contentServer:ContentService, private msg:MessageService) {
-    //cpy/paste from Spring2018 example project.
-    googleyolo.hint({
-      supportedAuthMethods: [
-        "https://accounts.google.com"
-        //"googleyolo://id-and-password"
-      ],
-      supportedIdTokenProviders: [
-        {
-          uri: "https://accounts.google.com",
-          clientId: "62226211914-m4nfhcsm4t9j22anisu4hn62v4h4p9m8.apps.googleusercontent.com"
-        }
-      ]
-    }).then((credentials:any)=>{
-      //console.log(credentials);
-      contentServer.oAuthLogIn(credentials.displayName,credentials.id,credentials.profilePicture);
-    });
+    
    }
 
   ngOnInit() {
@@ -58,6 +43,25 @@ export class LoginComponent implements OnInit {
       pword
       //hash.update( pword ).digest().toString('hex')
     ).subscribe( data=> this.msg.messages.push({text:"Signup Successful!", type:"success"}) );
+  }
+
+  GoogleLogin(){
+    //cpy/paste from Spring2018 example project.
+    googleyolo.hint({
+      supportedAuthMethods: [
+        "https://accounts.google.com"
+        //"googleyolo://id-and-password"
+      ],
+      supportedIdTokenProviders: [
+        {
+          uri: "https://accounts.google.com",
+          clientId: "62226211914-m4nfhcsm4t9j22anisu4hn62v4h4p9m8.apps.googleusercontent.com"
+        }
+      ]
+    }).then((credentials:any)=>{
+      //console.log(credentials);
+      this.contentServer.oAuthLogIn(credentials.displayName,credentials.id,credentials.profilePicture);
+    });
   }
 
 }

@@ -1,8 +1,8 @@
 <div class="row no-gutters">
   <div class="col-md-3" *ngFor="let friend of friends">
-    <div class="card clickable" (click)="ViewFriend(friend.userID)">
+    <div class="card">
       <div class="card-header muted">
-        {{friend.username}}
+        <span class="clickable" (click)="ViewFriend(friend.userID)">{{friend.username}}</span>
       </div>
       <img class="card-img" [src]="friend.profilePicture" alt="Profile Image" />
     </div>

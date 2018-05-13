@@ -35,12 +35,14 @@
 </div>
 
 <div class="card">
-Exercise totals:
-<ul>
-  <li *ngFor="let total of totals">{{total.type}}: {{total.amount}}</li>
-</ul>
-Friends:
-<ul>
-  <li class="clickable" (click)="ViewFriend(friend.userID)" *ngFor="let friend of friends">{{friend.username}}</li>
-</ul>
+  <div class="card-body">
+    Exercise totals:
+    <ul>
+      <li *ngFor="let total of totals">{{total.type}}: {{total.amount}}</li>
+    </ul>
+    Friends:
+    <ul>
+      <li class="clickable" (click)="ViewFriend(friend.userID)" *ngFor="let friend of friends">{{friend.username}}</li>
+    </ul>
+  </div>
 </div>
