@@ -115,6 +115,12 @@ function Datastore(){
         });
         return {success:'maybe?'};
     }
+
+    this.Search = (term) =>{
+        return Users.filter( 
+            v => v.username.toLowerCase().indexOf(term.toLowerCase()) > -1 
+        ).map(x=>x.username);
+    }
 }
 
 module.exports = Datastore;

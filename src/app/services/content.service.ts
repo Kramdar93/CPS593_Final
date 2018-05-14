@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
-import { tap } from "rxjs/operators";
+import { Http, Response, ResponseOptions } from "@angular/http";
+import { tap,map } from "rxjs/operators";
+import { Observable } from 'rxjs/Observable';
 
 import { Post } from "../models/post";
 import { UserProfile, Progress } from '../models/userProfile';
@@ -9,6 +10,9 @@ const API:String = "http://localhost:8080/content";
 
 @Injectable()
 export class ContentService {
+
+  //?
+  model:any;
 
   //the logged in user
   currentUser:UserProfile;
@@ -82,4 +86,20 @@ export class ContentService {
       .pipe(tap(data=>this.currentUser = data.json()));
   }
 
+  public Search(term:string){
+    if (term == '') {
+      //not as simple as ng-bootstrap claims, luckily this was available to be pulled from mock-content-service.
+      return Observable.of(
+        new Response(
+          new ResponseOptions({
+            body:JSON.stringify(
+              []
+            )
+          })
+        )
+      );
+    }
+
+    return this.http.get(API + "/search", {params: {term:term} });
+  }
 }

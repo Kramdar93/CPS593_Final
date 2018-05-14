@@ -39,3 +39,6 @@ module.exports = app
     .post("/save", (req,res)=>{
         res.send(dstore.Save());
     })
+    .get("/search", (req,res) => {
+        res.send( dstore.Search(req.query.term) );
+    })

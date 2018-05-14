@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { debounceTime, distinctUntilChanged, map, switchMap, catchError } from 'rxjs/operators';
 
 import { UserProfile } from '../models/userProfile';
 
@@ -49,4 +51,14 @@ export class FriendsComponent implements OnInit {
     this.contentServer.targetUser = this.friends.find(x=>x.userID == id);
     this.router.navigate(['/profile']);
   }
+
+  search = (text$: Observable<string>) => 
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap(term =>
+        this.contentServer.Search(term)
+          .pipe(map(data=>data.json()))
+      )
+    );
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from "@angular/router";
 import { Http,ConnectionBackend, HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { MessagesComponent } from './messages/messages.component';
   imports: [
     FormsModule,
     BrowserModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot([
       {path:'feed', component:FeedComponent},
       {path:'friends', component:FriendsComponent},
